@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HelloService } from '../hello.service';
-import { IHello } from '../hello';
 import { ActivatedRoute } from '@angular/router';
+import { IItem } from '../IItem';
+import { ItemService } from '../item.service';
 
 @Component({
   selector: 'app-item',
@@ -10,10 +10,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ItemComponent implements OnInit {
 
-  item: IHello;
+  item: IItem;
 
   constructor(
-    private helloService: HelloService,
+    private itemService: ItemService,
     private route: ActivatedRoute,
   ) { }
 
@@ -23,9 +23,9 @@ export class ItemComponent implements OnInit {
   }
 
   getItemById(id: number) {
-    this.helloService.getItemById(id).subscribe(next => {
+    this.itemService.getItemById(id).subscribe(next => {
       this.item = next;
-      console.log('success to get item ' + next.order);
+      console.log('success to get item ' + next.name);
     }, error => {
       console.log('fail to get item');
     });
