@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IItem } from '../IItem';
 import { ItemService } from '../item.service';
 
@@ -15,6 +15,7 @@ export class ItemComponent implements OnInit {
   constructor(
     private itemService: ItemService,
     private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit() {
