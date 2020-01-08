@@ -9,6 +9,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ItemCreateComponent } from './item-create/item-create.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
+import { LoginTaskbarComponent } from './login/login-taskbar/login-taskbar.component';
+import { ItemDeleteComponent } from './item-delete/item-delete.component';
+import { ItemEditComponent } from './item-edit/item-edit.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +21,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ItemListComponent,
     ItemCreateComponent,
     LoginComponent,
+    RegisterComponent,
+    LoginTaskbarComponent,
+    ItemDeleteComponent,
+    ItemEditComponent,
   ],
   imports: [
     BrowserModule,

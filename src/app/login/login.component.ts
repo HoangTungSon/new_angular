@@ -44,36 +44,28 @@ export class LoginComponent implements OnInit {
       console.log(this.isLoggedIn);
     }
     this.form = {
-      userId: this.tokenStorage.getId(),
+      id: this.tokenStorage.getId(),
       email: this.tokenStorage.getEmail(),
-      username: this.tokenStorage.getUsername(),
+      name: this.tokenStorage.getUsername(),
       token: this.tokenStorage.getToken(),
-      role: [] = this.tokenStorage.getAuthorities()
     };
-
-    console.log(this.form);
   }
 
   onSubmit() {
     const {username, password} = this.loginForm.value;
 
     const loginFormAuth = new AuthLoginInfo(username, password);
-    console.log(username);
-    console.log(this.roles);
 
     this.authService.attemptAuth(loginFormAuth).subscribe(
       data => {
-
         this.tokenStorage.saveId(data.id);
         this.tokenStorage.saveEmail(data.email);
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUsername(data.name);
-        this.tokenStorage.saveAuthorities(data.roles);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getAuthorities();
-        // this.router.navigate(['/user/' + data.userId + '/board']).then(r => console.log('user navigate'));
+        this.router.navigate(['/items/']).then(r => console.log('success to navigate'));
       },
       error => {
         console.log(error);

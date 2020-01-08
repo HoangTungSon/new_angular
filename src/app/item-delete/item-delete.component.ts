@@ -1,26 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { IItem } from '../IItem';
 import { ItemService } from '../item.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { IItem } from '../IItem';
 
 @Component({
-  selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.css']
+  selector: 'app-item-delete',
+  templateUrl: './item-delete.component.html',
+  styleUrls: ['./item-delete.component.css']
 })
-export class ItemComponent implements OnInit {
+export class ItemDeleteComponent implements OnInit {
 
   item: IItem;
+
+  itemId: number;
 
   constructor(
     private itemService: ItemService,
     private route: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
     this.getItemById(id);
+    this.itemId = id;
   }
 
   getItemById(id: number) {
@@ -32,5 +35,16 @@ export class ItemComponent implements OnInit {
       console.log('fail to get item');
     });
   }
+
+  deleteItem() {
+    this.itemService.deleteItem(this.itemId).subscribe(next => {
+
+      this.router.navigateByUrl("/items").then(success => console.log("success to delete item"))
+    }, error => {
+      console.log("fail to delete item")
+    })
+  }
+
+
 
 }

@@ -16,7 +16,7 @@ export class ItemListComponent implements OnInit {
 
   ngOnInit() {
     console.log('something running');
-    this.itemService.getItems(10).subscribe(next => {
+    this.itemService.getItems(100).subscribe(next => {
       this.items = next;
       console.log('success to get items');
     }, error => {

@@ -27,8 +27,8 @@ export class ItemService {
     return this.httpClient.post<IItem>(this.URL, item);
   }
 
-  updateItem(id: number, item: IItem): Observable<IItem> {
-    return this.httpClient.put<IItem>(`${this.URL}/${id}`, item)
+  updateItem(item: IItem): Observable<IItem> {
+    return this.httpClient.put<IItem>(`${this.URL}/${item.id}`, item)
   }
 
   deleteItem(id: number): Observable<any>{
